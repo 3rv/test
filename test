@@ -1,0 +1,18 @@
+#!/bin/bash
+
+echo $1
+echo $2
+echo $3
+
+mkdir .outputdir
+cp $1 .outputdir/
+cd outputdir
+unzip $1
+git init
+git add --all
+git commit -m "$3"
+git remote add origin git@github.com:3rv/$2.git
+git push -u -f origin master
+cd ..
+rm -r .outputdir
+
