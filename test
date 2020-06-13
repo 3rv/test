@@ -5,14 +5,17 @@ echo $2
 echo $3
 
 mkdir .outputdir
-cp $1 .outputdir/
-cd outputdir
-unzip $1
-git init
+cd .outputdir
+git clone git@github.com:3rv/$2.git
+git rm -r
+cd ..
+cp $1 .outputdir/artifact
+cd .outputdir
+unzip artifact
+rm artifact
 git add --all
 git commit -m "$3"
-git remote add origin git@github.com:3rv/$2.git
-git push -u -f origin master
+git push -f origin master
 cd ..
 rm -r .outputdir
 
